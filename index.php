@@ -34,7 +34,7 @@ if (isset($_POST['download'])) {
     <div class="url-input">
       <span class="title">Поставете линка към видеото:</span>
       <div class="field">
-        <input class="form-control" type="text" placeholder="https://www.youtube.com/watch?v=..." required>
+        <input class="form-control" type="text" placeholder="https://www.youtube.com/watch?v=..." required  oninvalid="this.setCustomValidity('Моля, въведете линк')"  oninput="setCustomValidity('')">
         <input class="hidden-input" type="hidden" name="imgurl">
         <span class="bottom-line"></span>
       </div>
@@ -80,6 +80,35 @@ if (isset($_POST['download'])) {
       }
       hiddenInput.value = imgTag.src;
     }
+
+
+    // JS Custom Validation
+    var FormStuff = {
+      init: function() {
+        this.applyConditionalRequired();
+        this.bindUIActions();
+      },
+    
+      bindUIActions: function() {
+        $("input[type='radio'], input[type='checkbox']").on("change", this.applyConditionalRequired);
+      },
+    
+      applyConditionalRequired: function() {
+    
+        $(".require-if-active").each(function() {
+          var el = $(this);
+          if ($(el.data("require-pair")).is(":checked")) {
+            el.prop("required", true);
+          } else {
+            el.prop("required", false);
+          }
+        });
+    
+      }
+    
+    };
+    
+    FormStuff.init();
   </script>
 </body>
 
