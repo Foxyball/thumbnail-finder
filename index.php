@@ -8,7 +8,7 @@ if (isset($_POST['download'])) {
   $download = curl_exec($curl);
   curl_close($curl);
   header('Content-type: image/png');
-  header('Content-Disposition: attachment;filename="thumbnail(balikgstudio).png"'); //izteglqne na img v .jpg
+  header('Content-Disposition: attachment;filename="thumbnail(balikgstudio).png"'); //download the thumbnail
   echo $download;
 }
 ?>
